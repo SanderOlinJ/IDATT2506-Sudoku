@@ -2,14 +2,29 @@ import React from 'react';
 import { Text, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 
 const StartScreen = ({ navigation }) => {
-  return (
+    const startNewGame = () => {
+        console.log("Starting new game...");
+        navigation.navigate('ChooseDifficulty');
+    }
+
+    const loadPreviousGame = () => {
+        console.log("Loading previous game...");
+        navigation.navigate('PreviousGame')
+    }
+
+    const createNewBoard = () => {
+        console.log("Creating new boarding...");
+        navigation.navigate('CreateNewBoard')
+    }
+
+    return (
       <SafeAreaView style={styles.container}>
           <Text style={styles.title}>Sudoku</Text>
           <Image source={require('../assets/sudoku.png')} style={styles.sudokuIcon}/>
           
           <TouchableOpacity
               style={styles.button}
-              onPress={() => {}}>
+              onPress={() => startNewGame()}>
             <Text
                 style={styles.buttonText}>
                 Start New Game
@@ -18,7 +33,7 @@ const StartScreen = ({ navigation }) => {
 
           <TouchableOpacity
               style={styles.button}
-              onPress={() => {}}>
+              onPress={() => loadPreviousGame()}>
             <Text
                 style={styles.buttonText}>
                 Load Previous Game
@@ -28,7 +43,7 @@ const StartScreen = ({ navigation }) => {
 
           <TouchableOpacity
               style={styles.button}
-              onPress={() => {}}>
+              onPress={() => createNewBoard()}>
             <Text
                 style={styles.buttonText}>
                 Create New Board
