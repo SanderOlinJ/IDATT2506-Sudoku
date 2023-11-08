@@ -8,7 +8,7 @@ import GameScreen from "./screens/GameScreen";
 const Stack = createStackNavigator()
 
 export default function App() {
-  console.log("App executed")
+  console.log("App executed!")
   return (
       <NavigationContainer>
           <Stack.Navigator>

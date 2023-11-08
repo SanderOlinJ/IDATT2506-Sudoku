@@ -14,19 +14,19 @@ const ChooseDifficultyScreen = ({ navigation }) => {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('Easy')}>
+                onPress={() => selectDifficulty('easy')}>
                 <Text style={styles.buttonText}>Easy</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('Medium')}>
+                onPress={() => selectDifficulty('medium')}>
                 <Text style={styles.buttonText}>Medium</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('Hard')}>
+                onPress={() => selectDifficulty('hard')}>
                 <Text style={styles.buttonText}>Hard</Text>
             </TouchableOpacity>
         </SafeAreaView>

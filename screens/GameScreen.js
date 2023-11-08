@@ -8,12 +8,14 @@ const GameScreen = ({ route }) => {
     const { difficulty } = route.params;
     console.log(`${difficulty} chosen`);
     const sudoku = getSudoku(difficulty);
-
+    console.log(sudoku.puzzle)
+    console.log(sudoku.solution)
+    console.log(sudoku.difficulty)
 
     return (
         <View style={styles.container}>
             <Text>{`You selected ${difficulty} difficulty.`}</Text>
-            <BoardComponent />
+            <BoardComponent puzzle={sudoku.puzzle} solution={sudoku.solution} />
         </View>
     );
 }

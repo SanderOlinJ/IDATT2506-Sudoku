@@ -2,36 +2,49 @@ import React from 'react';
 import { View, StyleSheet } from "react-native";
 import Cell from "../components/CellComponent";
 
-const BoardComponent = () => {
-    const renderCell = (key) => {
-        // You can pass `initialValue` to the Cell here if needed
-        return <Cell key={key} />;
-    };
+const BoardComponent = ({ puzzle, solution }) => {
+    const puzzleRows = []
+    const solutionRows = []
+    for (let i = 0; i < 9; i++) {
+        puzzleRows.push(puzzle.slice(i * 9, i * 9 + 9).split(''))
+        solutionRows.push(puzzle.slice(i * 9, i * 9 + 9).split(''))
+    }
+
+
+    const renderCell = (rowIndex, columnIndex) => {
+        const initialValue = puzzleRows[rowIndex][columnIndex] === '-' ? null : puzzleRows[rowIndex][columnIndex]
+        const solutionValue = solutionRows[rowIndex][columnIndex]
+        return <Cell initialValue={initialValue} solutionValue={solutionValue} />
+    }
 
     const renderGroup = (groupIndex) => {
-        return (
-            <View style={styles.group} key={groupIndex}>
-                {Array(3).fill().map((_, index) => renderCell(`cell-${groupIndex}-${index}`))}
-            </View>
-        );
-    };
+        const startIndexRow = Math.floor(groupIndex / 3) * 3;
+        const startIndexCol = (groupIndex % 3) * 3;
 
-    const renderRow = (rowIndex) => {
         return (
-            <View style={styles.row} key={rowIndex}>
-                {Array(3).fill().map((_, index) => renderGroup(`group-${rowIndex}-${index}`))}
+            <View style={styles.group} key={`group-${groupIndex}`}>
+                {Array.from({ length: 3 }).map((_, rowIndex) =>
+                    Array.from({ length: 3 }).map((_, colIndex) =>
+                        renderCell(startIndexRow + rowIndex, startIndexCol + colIndex)
+                    )
+                )}
             </View>
         );
     };
 
     return (
-        <View style={styles.container}>
-            {Array(9).fill().map((_, rowIndex) => renderRow(rowIndex))}
+        <View style={styles.board}>
+            {Array.from({ length: 9 }).map((_, groupIndex) => renderGroup(groupIndex))}
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
+    board: {
+        // Give the entire board a border
+        borderWidth: 3,
+        borderColor: 'black',
+    },
     container: {
         justifyContent: "center",
         alignItems: "center"
@@ -40,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     group: {
-        flexDirection: 'row',  // Change from 'column' to 'row'
+        flexDirection: 'row',
         borderWidth: 1,
         borderColor: 'black'
     }
