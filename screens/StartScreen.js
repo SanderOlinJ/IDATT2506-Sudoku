@@ -1,15 +1,21 @@
-import React from 'react';
-import { Text, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, View, Modal} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import '../locales/i18n'
+import { useTranslation } from 'react-i18next'
+import ChooseLanguageModal from "../components/ChooseLanguageModal";
 
 const StartScreen = ({ navigation }) => {
+    const { t, i18n } = useTranslation()
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const toggleLanguage = (lang) => {
+        i18n.changeLanguage(lang).then(() => setModalVisible(false))
+    }
+
     const startNewGame = () => {
         console.log("Starting new game...");
         navigation.navigate('ChooseDifficulty');
-    }
-
-    const loadPreviousGame = () => {
-        console.log("Loading previous game...");
-        navigation.navigate('PreviousGame')
     }
 
     const createNewBoard = () => {
@@ -17,8 +23,18 @@ const StartScreen = ({ navigation }) => {
         navigation.navigate('CreateNewBoard')
     }
 
+    const openSettings = () => {
+        console.log("Opening settings...");
+        setModalVisible(true)
+    }
+
+    const openManual = () => {
+        console.log("Opening user manual...")
+    }
+
     return (
       <SafeAreaView style={styles.container}>
+
           <Text style={styles.title}>Sudoku</Text>
           <Image source={require('../assets/sudoku.png')} style={styles.sudokuIcon}/>
           
@@ -27,34 +43,58 @@ const StartScreen = ({ navigation }) => {
               onPress={() => startNewGame()}>
             <Text
                 style={styles.buttonText}>
-                Start New Game
+                {t('start_new_game')}
             </Text>
           </TouchableOpacity>
-
-          <TouchableOpacity
-              style={styles.button}
-              onPress={() => loadPreviousGame()}>
-            <Text
-                style={styles.buttonText}>
-                Load Previous Game
-            </Text>
-          </TouchableOpacity>
-          
 
           <TouchableOpacity
               style={styles.button}
               onPress={() => createNewBoard()}>
             <Text
                 style={styles.buttonText}>
-                Create New Board
+                {t('create_new_board')}
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+              style={styles.button}
+              onPress={() => openSettings()}>
+              <Text
+                  style={styles.buttonText}>
+                  {t('settings')}
+              </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+              style={styles.button}
+              onPress={() => openManual()}>
+              <Text
+                  style={styles.buttonText}>
+                  {t('how_to_play')}
+              </Text>
+          </TouchableOpacity>
+
+
+          <ChooseLanguageModal
+              modalVisible={modalVisible}
+              setModalVisible={() => setModalVisible(false)}
+              toggleLanguage={toggleLanguage}
+          />
       </SafeAreaView>
   );
 }
 export default StartScreen;
 
 const styles = StyleSheet.create({
+    header: {
+        position: 'absolute',
+        top: 30,
+        right: 10
+    },
+    flag: {
+        fontSize: 30,
+        color: '#000'
+    },
     container: {
         flex: 1,
         alignItems: 'center',

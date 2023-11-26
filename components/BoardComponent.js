@@ -4,17 +4,15 @@ import Cell from "../components/CellComponent";
 
 const BoardComponent = ({ puzzle, solution }) => {
     const puzzleRows = []
-    const solutionRows = []
     for (let i = 0; i < 9; i++) {
         puzzleRows.push(puzzle.slice(i * 9, i * 9 + 9).split(''))
-        solutionRows.push(puzzle.slice(i * 9, i * 9 + 9).split(''))
     }
 
 
     const renderCell = (rowIndex, columnIndex) => {
+        const key = `cell-${rowIndex}-${columnIndex}`;
         const initialValue = puzzleRows[rowIndex][columnIndex] === '-' ? null : puzzleRows[rowIndex][columnIndex]
-        const solutionValue = solutionRows[rowIndex][columnIndex]
-        return <Cell initialValue={initialValue} solutionValue={solutionValue} />
+        return <Cell key={key} initialValue={initialValue} />
     }
 
     const renderGroup = (groupIndex) => {

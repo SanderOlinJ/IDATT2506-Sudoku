@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next'
 
 const ChooseDifficultyScreen = ({ navigation }) => {
+    const { t, i18n } = useTranslation()
 
     const selectDifficulty = (difficulty) => {
 
@@ -10,24 +12,24 @@ const ChooseDifficultyScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Choose Difficulty</Text>
+            <Text style={styles.title}>{t('choose_difficulty')}</Text>
 
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => selectDifficulty('easy')}>
-                <Text style={styles.buttonText}>Easy</Text>
+                <Text style={styles.buttonText}>{t('easy')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => selectDifficulty('medium')}>
-                <Text style={styles.buttonText}>Medium</Text>
+                <Text style={styles.buttonText}>{t('medium')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => selectDifficulty('hard')}>
-                <Text style={styles.buttonText}>Hard</Text>
+                <Text style={styles.buttonText}>{t('hard')}</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

@@ -1,10 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import {View, StyleSheet, TextInput} from 'react-native';
 
-const Cell = ({ initialValue, solutionValue }) => {
+const Cell = ({ initialValue, onValueChange, editable }) => {
     return (
         <View style={styles.cell}>
-            <Text style={styles.cellText}>{initialValue || ''}</Text>
+            <TextInput
+                style={styles.cellText}
+                value={initialValue}
+                onChangeText={onValueChange}
+                editable={editable}
+                keyboardType={"number-pad"}
+                maxLength={1}
+            />
         </View>
     );
 };
@@ -21,5 +28,6 @@ const styles = StyleSheet.create({
     },
     cellText: {
         fontSize: 25,
+        textAlign: "center"
     }
 });
