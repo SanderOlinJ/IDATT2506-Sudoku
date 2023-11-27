@@ -1,5 +1,5 @@
-import React from "react";
-import {View, StyleSheet, TextInput} from 'react-native';
+import React from "react"
+import {View, StyleSheet, TextInput} from "react-native"
 
 const Cell = ({ initialValue, onValueChange, editable }) => {
     return (
@@ -13,9 +13,9 @@ const Cell = ({ initialValue, onValueChange, editable }) => {
                 maxLength={1}
             />
         </View>
-    );
-};
-export default Cell;
+    )
+}
+export default Cell
 
 const styles = StyleSheet.create({
     cell: {
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center"
     }
-});
+})

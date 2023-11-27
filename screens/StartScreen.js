@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, View, Modal} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import '../locales/i18n'
-import { useTranslation } from 'react-i18next'
-import ChooseLanguageModal from "../components/ChooseLanguageModal";
+import React, {useState} from "react"
+import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity} from "react-native"
+import "../locales/i18n"
+import { useTranslation } from "react-i18next"
+import ChooseLanguageModal from "../components/ChooseLanguageModal"
 
 const StartScreen = ({ navigation }) => {
     const { t, i18n } = useTranslation()
@@ -14,36 +13,37 @@ const StartScreen = ({ navigation }) => {
     }
 
     const startNewGame = () => {
-        console.log("Starting new game...");
-        navigation.navigate('ChooseDifficulty');
+        console.log("Starting new game...")
+        navigation.navigate("ChooseDifficulty")
     }
 
     const createNewBoard = () => {
-        console.log("Creating new boarding...");
-        navigation.navigate('CreateNewBoard')
+        console.log("Creating new boarding...")
+        navigation.navigate("CreateNewBoard")
     }
 
     const openSettings = () => {
-        console.log("Opening settings...");
+        console.log("Opening settings...")
         setModalVisible(true)
     }
 
-    const openManual = () => {
-        console.log("Opening user manual...")
+    const openUserGuide = () => {
+        console.log("Opening user guide...")
+        navigation.navigate("UserGuideScreen")
     }
 
     return (
       <SafeAreaView style={styles.container}>
 
           <Text style={styles.title}>Sudoku</Text>
-          <Image source={require('../assets/sudoku.png')} style={styles.sudokuIcon}/>
+          <Image source={require("../assets/sudoku.png")} style={styles.sudokuIcon}/>
           
           <TouchableOpacity
               style={styles.button}
               onPress={() => startNewGame()}>
             <Text
                 style={styles.buttonText}>
-                {t('start_new_game')}
+                {t("start_new_game")}
             </Text>
           </TouchableOpacity>
 
@@ -52,7 +52,7 @@ const StartScreen = ({ navigation }) => {
               onPress={() => createNewBoard()}>
             <Text
                 style={styles.buttonText}>
-                {t('create_new_board')}
+                {t("create_new_board")}
             </Text>
           </TouchableOpacity>
 
@@ -61,16 +61,16 @@ const StartScreen = ({ navigation }) => {
               onPress={() => openSettings()}>
               <Text
                   style={styles.buttonText}>
-                  {t('settings')}
+                  {t("settings")}
               </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
               style={styles.button}
-              onPress={() => openManual()}>
+              onPress={() => openUserGuide()}>
               <Text
                   style={styles.buttonText}>
-                  {t('how_to_play')}
+                  {t("how_to_play")}
               </Text>
           </TouchableOpacity>
 
@@ -81,13 +81,13 @@ const StartScreen = ({ navigation }) => {
               toggleLanguage={toggleLanguage}
           />
       </SafeAreaView>
-  );
+  )
 }
-export default StartScreen;
+export default StartScreen
 
 const styles = StyleSheet.create({
     header: {
-        position: 'absolute',
+        position: "absolute",
         top: 30,
         right: 10
     },
@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         padding: 20,
         backgroundColor: '#ddd'
     },
     title: {
         fontSize: 50,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         marginBottom: 20
     },
     sudokuIcon: {
@@ -117,13 +117,13 @@ const styles = StyleSheet.create({
       width: 200,
       padding: 15,
       borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
       marginBottom: 20,
     },
     buttonText: {
-      color: 'white',
+      color: "white",
       fontSize: 17,
-      fontWeight: '500'
+      fontWeight: "500"
     }
-});
+})

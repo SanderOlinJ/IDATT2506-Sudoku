@@ -11,5 +11,6 @@ export default {
     "choose_difficulty": "Velg vanskelighetsgrad",
     "easy": "Lett",
     "medium": "Middels",
-    "hard": "Vanskelig"
+    "hard": "Vanskelig",
+    "how_to_play_title": "Hvordan spille Sudoku"
 }

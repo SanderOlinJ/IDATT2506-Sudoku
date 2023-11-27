@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, StyleSheet } from "react-native";
-import Cell from "../components/CellComponent";
+import React from "react"
+import { View, StyleSheet } from "react-native"
+import Cell from "../components/CellComponent"
 
 const BoardComponent = ({ puzzle, solution }) => {
     const puzzleRows = []
@@ -10,14 +10,14 @@ const BoardComponent = ({ puzzle, solution }) => {
 
 
     const renderCell = (rowIndex, columnIndex) => {
-        const key = `cell-${rowIndex}-${columnIndex}`;
+        const key = `cell-${rowIndex}-${columnIndex}`
         const initialValue = puzzleRows[rowIndex][columnIndex] === '-' ? null : puzzleRows[rowIndex][columnIndex]
         return <Cell key={key} initialValue={initialValue} />
     }
 
     const renderGroup = (groupIndex) => {
-        const startIndexRow = Math.floor(groupIndex / 3) * 3;
-        const startIndexCol = (groupIndex % 3) * 3;
+        const startIndexRow = Math.floor(groupIndex / 3) * 3
+        const startIndexCol = (groupIndex % 3) * 3
 
         return (
             <View style={styles.group} key={`group-${groupIndex}`}>
@@ -27,15 +27,15 @@ const BoardComponent = ({ puzzle, solution }) => {
                     )
                 )}
             </View>
-        );
-    };
+        )
+    }
 
     return (
         <View style={styles.board}>
             {Array.from({ length: 9 }).map((_, groupIndex) => renderGroup(groupIndex))}
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     board: {
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black'
     }
-});
+})
 
-export default BoardComponent;
+export default BoardComponent

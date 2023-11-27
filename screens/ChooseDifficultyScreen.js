@@ -1,53 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import { useTranslation } from 'react-i18next'
+import React from "react"
+import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native"
+import { useTranslation } from "react-i18next"
 
 const ChooseDifficultyScreen = ({ navigation }) => {
-    const { t, i18n } = useTranslation()
+    const { t} = useTranslation()
 
     const selectDifficulty = (difficulty) => {
 
-        navigation.navigate('GameScreen', { difficulty: difficulty });
+        navigation.navigate("GameScreen", { difficulty: difficulty })
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>{t('choose_difficulty')}</Text>
+            <Text style={styles.title}>{t("choose_difficulty")}</Text>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('easy')}>
-                <Text style={styles.buttonText}>{t('easy')}</Text>
+                onPress={() => selectDifficulty("easy")}>
+                <Text style={styles.buttonText}>{t("easy")}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('medium')}>
-                <Text style={styles.buttonText}>{t('medium')}</Text>
+                onPress={() => selectDifficulty("medium")}>
+                <Text style={styles.buttonText}>{t("medium")}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => selectDifficulty('hard')}>
-                <Text style={styles.buttonText}>{t('hard')}</Text>
+                onPress={() => selectDifficulty("hard")}>
+                <Text style={styles.buttonText}>{t("hard")}</Text>
             </TouchableOpacity>
         </SafeAreaView>
-    );
+    )
 }
 
-export default ChooseDifficultyScreen;
+export default ChooseDifficultyScreen
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         padding: 20,
         backgroundColor: '#ddd'
     },
     title: {
         fontSize: 30,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         marginBottom: 40
     },
     button: {
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
         width: 200,
         padding: 15,
         borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginBottom: 20,
     },
     buttonText: {
-        color: 'white',
+        color: "white",
         fontSize: 17,
-        fontWeight: '500'
+        fontWeight: "500"
     }
-});
+})

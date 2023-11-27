@@ -11,5 +11,6 @@ export default {
     "choose_difficulty": "Choose difficulty",
     "easy": "Easy",
     "medium": "Medium",
-    "hard": "Hard"
+    "hard": "Hard",
+    "how_to_play_title": "How to play Sudoku"
 }
