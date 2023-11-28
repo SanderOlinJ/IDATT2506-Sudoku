@@ -85,6 +85,7 @@ const StartScreen = ({ navigation }) => {
       </SafeAreaView>
   )
 }
+
 export default StartScreen
 
 const styles = StyleSheet.create({

@@ -1,19 +1,21 @@
 import React from "react"
 import {StyleSheet, TouchableOpacity, Text} from "react-native"
 
-const Cell = ({ initialValue, isEditable, borderLeft, borderTop, isSelected, onSelectCell }) => {
+const Cell = ({ initialValue, isEditable, borderLeft, borderTop, isSelected, onSelectCell, isFlagged }) => {
 
     const cellStyle = [
         styles.container,
         borderLeft && styles.borderLeft,
         borderTop && styles.borderTop,
         !isEditable && styles.predefinedCell,
-        isSelected && styles.selectedCell
+        isSelected && styles.selectedCell,
+        isFlagged && styles.flaggedCell
     ]
 
     const textStyle = [
         styles.cellText,
-        isSelected && styles.selectedText
+        isSelected && styles.selectedText,
+        isFlagged && styles.flaggedText
     ]
 
     return (
@@ -23,7 +25,7 @@ const Cell = ({ initialValue, isEditable, borderLeft, borderTop, isSelected, onS
             onPress={isEditable ? onSelectCell : null}
         >
             <Text style={textStyle}>
-                {initialValue}A
+                {initialValue}
             </Text>
         </TouchableOpacity>
     )
@@ -59,5 +61,11 @@ const styles = StyleSheet.create({
     },
     predefinedCell: {
         backgroundColor: "#aaa"
+    },
+    flaggedCell: {
+        backgroundColor: "yellow"
+    },
+    flaggedText: {
+        color: "#000"
     }
 })

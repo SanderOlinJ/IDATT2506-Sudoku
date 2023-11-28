@@ -3,19 +3,48 @@ import {StyleSheet, SafeAreaView, Text} from "react-native"
 import BoardComponent from "../components/BoardComponent"
 import { getSudoku } from "sudoku-gen"
 import {useTranslation} from "react-i18next"
-import InputComponent from "../components/InputComponent";
+import InputComponent from "../components/InputComponent"
 
 
 const GameScreen = ({ route }) => {
 
     const { difficulty } = route.params
-    const [sudoku, setSudoku] = useState(() => getSudoku(difficulty));
-    console.log(sudoku.puzzle)
-    console.log(sudoku.solution)
-    console.log(sudoku.difficulty)
-
+    const [sudoku, setSudoku] = useState(() => getSudoku(difficulty))
     const { t } = useTranslation()
     const [selectedCell, setSelectedCell] = useState(null)
+    const [userInputs, setUserInputs] =
+        useState(sudoku.puzzle.split('').map(c => c === '-' ? '' : c))
+    const [flaggedCells, setFlaggedCells] = useState(Array(81).fill(false))
+
+    const updateCellValue = (number) => {
+        console.log("Test 1")
+        if (selectedCell) {
+            console.log("Test 2")
+            const [row, col] = selectedCell
+            const newUserInputs = [...userInputs]
+            newUserInputs[row * 9 + col] = number.toString()
+            setUserInputs(newUserInputs)
+        }
+    }
+
+    const removeCellValue = () => {
+        if (selectedCell) {
+            const [row, col] = selectedCell
+            const newUserInputs = [...userInputs]
+            newUserInputs[row * 9 + col] = ''
+            setUserInputs(newUserInputs)
+        }
+    }
+
+    const flagCell = () => {
+        if (selectedCell) {
+            const [row, col] = selectedCell
+            const newFlags = [...flaggedCells]
+            newFlags[row * 9 + col] = !newFlags[row * 9 + col]
+            setFlaggedCells(newFlags)
+        }
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -24,9 +53,15 @@ const GameScreen = ({ route }) => {
                 puzzle={sudoku.puzzle}
                 selectedCell={selectedCell}
                 setSelectedCell={setSelectedCell}
+                userInputs={userInputs}
+                flaggedCells={flaggedCells}
             />
 
-            <InputComponent />
+            <InputComponent
+                onNumberPress={updateCellValue}
+                onRemovePress={removeCellValue}
+                onFlagPress={flagCell}
+            />
         </SafeAreaView>
     )
 }

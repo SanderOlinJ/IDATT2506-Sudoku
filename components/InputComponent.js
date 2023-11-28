@@ -1,9 +1,9 @@
-import React from "react";
-import {Text, TouchableOpacity, StyleSheet, SafeAreaView} from 'react-native';
-import Icon from "react-native-vector-icons/FontAwesome";
+import React from "react"
+import {Text, TouchableOpacity, StyleSheet, SafeAreaView} from 'react-native'
+import Icon from "react-native-vector-icons/FontAwesome"
 
 
-const InputComponent = ({ onNumberPress, onTrashPress, onFlagPress }) => {
+const InputComponent = ({ onNumberPress, onRemovePress, onFlagPress }) => {
 
     const renderNumberButtons = () => {
         const buttons = []
@@ -27,10 +27,12 @@ const InputComponent = ({ onNumberPress, onTrashPress, onFlagPress }) => {
                 {renderNumberButtons()}
             </SafeAreaView>
             <SafeAreaView style={styles.iconRow}>
-                <TouchableOpacity onPress={onTrashPress}>
+                <TouchableOpacity
+                    onPress={onRemovePress}>
                     <Icon name="trash" size={30} color="#000" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={onFlagPress}>
+                <TouchableOpacity
+                    onPress={onFlagPress}>
                     <Icon name="flag" size={30} color="#000" />
                 </TouchableOpacity>
             </SafeAreaView>
