@@ -1,5 +1,5 @@
-import React, {useState} from "react"
-import {StyleSheet, SafeAreaView, Text, View, TouchableOpacity} from "react-native"
+import React, {useEffect, useState} from "react"
+import {StyleSheet, SafeAreaView, Text, TouchableOpacity, Alert} from "react-native"
 import BoardComponent from "../components/BoardComponent"
 import { getSudoku } from "sudoku-gen"
 import {useTranslation} from "react-i18next"
@@ -7,11 +7,10 @@ import InputComponent from "../components/InputComponent"
 import Icon from "react-native-vector-icons/FontAwesome"
 
 
-const GameScreen = ({ route }) => {
+const GameScreen = ({ route, navigation }) => {
 
     const { difficulty } = route.params
     const [sudoku, setSudoku] = useState(() => getSudoku(difficulty))
-    console.log(sudoku.solution)
     const { t } = useTranslation()
     const [selectedCell, setSelectedCell] = useState(null)
     const [userInputs, setUserInputs] =
@@ -53,9 +52,17 @@ const GameScreen = ({ route }) => {
     const checkSolution = () => {
         const userSolution = userInputs.join("")
         if (userSolution === sudoku.solution) {
-            alert("Correct! You solved the puzzle!")
+            Alert.alert(
+                t("correct_title"),
+                t("correct"),
+                [{ text: t("ok")}]
+            )
         } else {
-            alert("Incorrect, please try again.")
+            Alert.alert(
+                t("incorrect_title"),
+                t("incorrect"),
+                [{ text: t("try_again")}]
+            )
         }
     }
 
@@ -73,23 +80,27 @@ const GameScreen = ({ route }) => {
         }
     }
 
+    useEffect(() => {
+        navigation.setOptions({
+            title: `${t("difficulty_title")} ${t(difficulty)}`
+        });
+    }, [difficulty, navigation]);
+
     return (
         <SafeAreaView style={styles.container}>
 
-            <Text style={styles.title}>{t("difficulty_title") + " " + sudoku.difficulty}</Text>
-
             <SafeAreaView style={styles.topButtons}>
                 <TouchableOpacity style={styles.button} onPress={resetGame}>
-                    <Text style={styles.buttonText}>Reset</Text>
+                    <Text style={styles.buttonText}>{t("reset")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={solveSelectedCell}>
-                    <Text style={styles.buttonText}>Solve Cell</Text>
+                    <Text style={styles.buttonText}>{t("solve_cell")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={quickSolve}>
-                    <Text style={styles.buttonText}>Quick Solve</Text>
+                    <Text style={styles.buttonText}>{t("quick_solve")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={checkSolution}>
-                    <Text style={styles.buttonText}>Check</Text>
+                    <Text style={styles.buttonText}>{t("check")}</Text>
                 </TouchableOpacity>
             </SafeAreaView>
 
@@ -129,6 +140,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
+        paddingTop: 0,
         backgroundColor: "#ddd"
     },
     title: {
@@ -145,14 +157,15 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: "#512897",
-        width: 70,
+        width: 80,
+        minHeight: 40,
         padding: 5,
         borderRadius: 5,
         justifyContent: "center"
     },
     buttonText: {
         color: "white",
-        fontSize: 17,
+        fontSize: 16,
         fontWeight: "500",
         textAlign: "center"
     },

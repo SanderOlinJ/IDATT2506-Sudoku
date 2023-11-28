@@ -13,5 +13,27 @@ export default {
     "medium": "Medium",
     "hard": "Hard",
     "difficulty_title": "Difficulty:",
-    "how_to_play_title": "How to play Sudoku"
+    "how_to_play_title": "How to play:",
+    "sudoku_description": "Sudoku is a puzzle, traditionally played on a 9x9 grid. " +
+        "The grid is divided into nine 3x3 boxes. The objective of the game is to fill the grid so that each row, " +
+        "column, and 3x3 box contains all of the digits from 1 to 9. This means that within the column, " +
+        "row and the 3x3 box, none of the digits should be repeating.",
+    "game_interaction_title": "Game interaction",
+    "select_cell_instruction": "To add values to a cell, first select the cell by tapping it. Then, choose any of the numbers from the number bar to add to the selected cell.",
+    "remove_button_explanation": "The 'Remove' button deletes the value from the currently selected cell.",
+    "flag_button_explanation": "The 'Flag' button can be used to mark a cell for review later on.",
+    "reset_button_explanation": "The 'Reset' button clears all inputs and flags, returning the puzzle to its initial state.",
+    "solve_cell_button_explanation": "The 'Solve Cell' button fills in the selected cell with the correct value.",
+    "quick_solve_button_explanation": "The 'Quick Solve' button immediately solves the entire puzzle.",
+    "check_button_explanation": "The 'Check' button verifies if the puzzle has been solved correctly.",
+    "reset": "Reset",
+    "solve_cell": "Solve Cell",
+    "quick_solve": "Quick Solve",
+    "check": "Check",
+    "correct_title": "CORRECT!",
+    "correct": "Correct! You solved the puzzle!",
+    "incorrect_title": "INCORRECT!",
+    "incorrect": "Incorrect, please try again.",
+    "ok": "Ok",
+    "try_again": "Try again"
 }

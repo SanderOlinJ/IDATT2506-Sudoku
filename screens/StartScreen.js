@@ -3,8 +3,6 @@ import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity} from "react-nat
 import "../locales/i18n"
 import { useTranslation } from "react-i18next"
 import ChooseLanguageModal from "../components/ChooseLanguageModal"
-import { getSudoku } from "sudoku-gen"
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const StartScreen = ({ navigation }) => {
     const { t, i18n } = useTranslation()
@@ -15,29 +13,25 @@ const StartScreen = ({ navigation }) => {
     }
 
     const startNewGame = () => {
-        console.log("Starting new game...")
         navigation.navigate("ChooseDifficulty")
     }
 
     const createNewBoard = () => {
-        console.log("Creating new boarding...")
         navigation.navigate("CreateNewBoard")
     }
 
     const openSettings = () => {
-        console.log("Opening settings...")
         setModalVisible(true)
     }
 
     const openUserGuide = () => {
-        console.log("Opening user guide...")
         navigation.navigate("UserGuideScreen")
     }
 
     return (
       <SafeAreaView style={styles.container}>
 
-          <Text style={styles.title}>Sudoku</Text>
+          <Text style={styles.title}>{t("sudoku")}</Text>
           <Image source={require("../assets/sudoku.png")} style={styles.sudokuIcon}/>
           
           <TouchableOpacity
@@ -89,21 +83,10 @@ const StartScreen = ({ navigation }) => {
 export default StartScreen
 
 const styles = StyleSheet.create({
-    header: {
-        position: "absolute",
-        top: 30,
-        right: 10
-    },
-    flag: {
-        fontSize: 30,
-        color: '#000'
-    },
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        backgroundColor: '#ddd'
+        backgroundColor: "#ddd"
     },
     title: {
         fontSize: 50,
@@ -116,7 +99,7 @@ const styles = StyleSheet.create({
       marginBottom: 20
     },
     button: {
-      backgroundColor: '#512897',
+      backgroundColor: "#512897",
       width: 200,
       padding: 15,
       borderRadius: 5,

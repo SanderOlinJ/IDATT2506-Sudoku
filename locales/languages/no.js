@@ -13,5 +13,27 @@ export default {
     "medium": "Middels",
     "hard": "Vanskelig",
     "difficulty_title": "Vanskelighetsgrad:",
-    "how_to_play_title": "Hvordan spille Sudoku"
+    "how_to_play_title": "Hvordan spille:",
+    "sudoku_description": "Sudoku er et puslespill som tradisjonelt spilles på et 9x9 rutenett. " +
+        "Rutenettet er delt inn i ni 3x3 bokser. Målet med spillet er å fylle rutenettet slik at hver rad, " +
+        "kolonne og 3x3 boks inneholder alle tallene fra 1 til 9. Dette betyr at innenfor kolonnen, " +
+        "raden og 3x3 boksen skal ingen av tallene gjentas.",
+    "game_interaction_title": "Spill interaksjon",
+    "select_cell_instruction": "For å legge til verdier i en celle, velg først cellen ved å trykke på den. Deretter velger du hvilket som helst av tallene fra tallinjen for å legge til i den valgte cellen.",
+    "remove_button_explanation": "'Fjern'-knappen sletter verdien fra den valgte cellen.",
+    "flag_button_explanation": "'Flagg'-knappen kan brukes for å merke en celle for gjennomgang senere.",
+    "reset_button_explanation": "'Nullstill'-knappen fjerner alle inntastinger og flagg, og returnerer puslespillet til sin opprinnelige tilstand.",
+    "solve_cell_button_explanation": "'Løs celle'-knappen fyller den valgte cellen med den korrekte verdien.",
+    "quick_solve_button_explanation": "'Hurtigløs'-knappen løser hele puslespillet umiddelbart.",
+    "check_button_explanation": "'Sjekk'-knappen verifiserer om puslespillet er løst.",
+    "reset": "Nullstill",
+    "solve_cell": "Løs celle",
+    "quick_solve": "Hurtigløs",
+    "check": "Sjekk",
+    "correct_title": "KORREKT!",
+    "correct": "Korrekt! Du løste brettet!",
+    "incorrect_title": "FEIL!",
+    "incorrect": "Feil, prøv igjen.",
+    "ok": "Ok",
+    "try_again": "Prøv igjen"
 }
