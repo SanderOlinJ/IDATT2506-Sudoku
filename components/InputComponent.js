@@ -1,9 +1,7 @@
 import React from "react"
-import {Text, TouchableOpacity, StyleSheet, SafeAreaView} from 'react-native'
-import Icon from "react-native-vector-icons/FontAwesome"
+import {Text, TouchableOpacity, StyleSheet, SafeAreaView} from "react-native"
 
-
-const InputComponent = ({ onNumberPress, onRemovePress, onFlagPress }) => {
+const InputComponent = ({ onNumberPress }) => {
 
     const renderNumberButtons = () => {
         const buttons = []
@@ -23,19 +21,7 @@ const InputComponent = ({ onNumberPress, onRemovePress, onFlagPress }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <SafeAreaView style={styles.numberRow}>
-                {renderNumberButtons()}
-            </SafeAreaView>
-            <SafeAreaView style={styles.iconRow}>
-                <TouchableOpacity
-                    onPress={onRemovePress}>
-                    <Icon name="trash" size={30} color="#000" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={onFlagPress}>
-                    <Icon name="flag" size={30} color="#000" />
-                </TouchableOpacity>
-            </SafeAreaView>
+            {renderNumberButtons()}
         </SafeAreaView>
     )
 }
@@ -43,7 +29,10 @@ const InputComponent = ({ onNumberPress, onRemovePress, onFlagPress }) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "space-evenly",
+        flexDirection: "row",
+        width: "100%",
+        margin: 20
     },
     numberRow: {
         flexDirection: "row",
@@ -54,11 +43,14 @@ const styles = StyleSheet.create({
     iconRow: {
         flexDirection: "row",
         justifyContent: "space-evenly",
-        width: "30%",
+        width: "100%",
         marginTop: 10
     },
+    icon: {
+        paddingHorizontal: 50
+    },
     numberButton: {
-        backgroundColor: '#e7e7e7',
+        backgroundColor: "#e7e7e7",
         padding: 9,
         borderRadius: 0,
         marginHorizontal: 10,
