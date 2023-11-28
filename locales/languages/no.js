@@ -12,5 +12,6 @@ export default {
     "easy": "Lett",
     "medium": "Middels",
     "hard": "Vanskelig",
+    "difficulty_title": "Vanskelighetsgrad:",
     "how_to_play_title": "Hvordan spille Sudoku"
 }

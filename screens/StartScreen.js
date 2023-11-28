@@ -3,6 +3,8 @@ import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity} from "react-nat
 import "../locales/i18n"
 import { useTranslation } from "react-i18next"
 import ChooseLanguageModal from "../components/ChooseLanguageModal"
+import { getSudoku } from "sudoku-gen"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const StartScreen = ({ navigation }) => {
     const { t, i18n } = useTranslation()

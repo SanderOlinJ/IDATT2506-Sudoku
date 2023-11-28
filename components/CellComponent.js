@@ -1,24 +1,38 @@
 import React from "react"
-import {View, StyleSheet, TextInput} from "react-native"
+import {StyleSheet, TouchableOpacity, Text} from "react-native"
 
-const Cell = ({ initialValue, onValueChange, editable }) => {
+const Cell = ({ initialValue, isEditable, borderLeft, borderTop, isSelected, onSelectCell }) => {
+
+    const cellStyle = [
+        styles.container,
+        borderLeft && styles.borderLeft,
+        borderTop && styles.borderTop,
+        !isEditable && styles.predefinedCell,
+        isSelected && styles.selectedCell
+    ]
+
+    const textStyle = [
+        styles.cellText,
+        isSelected && styles.selectedText
+    ]
+
     return (
-        <View style={styles.cell}>
-            <TextInput
-                style={styles.cellText}
-                value={initialValue}
-                onChangeText={onValueChange}
-                editable={editable}
-                keyboardType={"number-pad"}
-                maxLength={1}
-            />
-        </View>
+        <TouchableOpacity
+            style={cellStyle}
+            disabled={!isEditable}
+            onPress={isEditable ? onSelectCell : null}
+        >
+            <Text style={textStyle}>
+                {initialValue}A
+            </Text>
+        </TouchableOpacity>
     )
 }
+
 export default Cell
 
 const styles = StyleSheet.create({
-    cell: {
+    container: {
         width: 40,
         height: 40,
         justifyContent: 'center',
@@ -28,6 +42,22 @@ const styles = StyleSheet.create({
     },
     cellText: {
         fontSize: 25,
-        textAlign: "center"
+        textAlign: "center",
+        color: "#000"
+    },
+    borderLeft: {
+        borderLeftWidth: 2,
+    },
+    borderTop: {
+        borderTopWidth: 2,
+    },
+    selectedCell: {
+        backgroundColor: "#512897"
+    },
+    selectedText: {
+        color: "#fff"
+    },
+    predefinedCell: {
+        backgroundColor: "#aaa"
     }
 })

@@ -4,7 +4,7 @@ import { useTranslation} from "react-i18next"
 import {SafeAreaView, StyleSheet, Text} from "react-native"
 
 
-const UserGuideScreen = ({ navigation }) => {
+const UserGuideScreen = () => {
     const { t} = useTranslation()
 
 

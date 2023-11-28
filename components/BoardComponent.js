@@ -2,59 +2,52 @@ import React from "react"
 import { View, StyleSheet } from "react-native"
 import Cell from "../components/CellComponent"
 
-const BoardComponent = ({ puzzle, solution }) => {
+const BoardComponent = ({ puzzle, selectedCell, setSelectedCell }) => {
     const puzzleRows = []
     for (let i = 0; i < 9; i++) {
         puzzleRows.push(puzzle.slice(i * 9, i * 9 + 9).split(''))
     }
 
-
-    const renderCell = (rowIndex, columnIndex) => {
-        const key = `cell-${rowIndex}-${columnIndex}`
-        const initialValue = puzzleRows[rowIndex][columnIndex] === '-' ? null : puzzleRows[rowIndex][columnIndex]
-        return <Cell key={key} initialValue={initialValue} />
-    }
-
-    const renderGroup = (groupIndex) => {
-        const startIndexRow = Math.floor(groupIndex / 3) * 3
-        const startIndexCol = (groupIndex % 3) * 3
-
-        return (
-            <View style={styles.group} key={`group-${groupIndex}`}>
-                {Array.from({ length: 3 }).map((_, rowIndex) =>
-                    Array.from({ length: 3 }).map((_, colIndex) =>
-                        renderCell(startIndexRow + rowIndex, startIndexCol + colIndex)
+    const renderBoard = () => {
+        return puzzleRows.map((row, rowIndex) => (
+            <View key={rowIndex} style={styles.row}>
+                {row.map((cell, columnIndex) => {
+                    const borderLeft = columnIndex % 3 === 0 && columnIndex !== 0
+                    const borderTop = rowIndex % 3 === 0 && rowIndex !== 0
+                    const isEditable = cell === '-'
+                    const initialValue = isEditable ? '' : cell
+                    const isSelected = selectedCell
+                        && selectedCell[0] === rowIndex
+                        && selectedCell[1] === columnIndex
+                    return (
+                        <Cell
+                            key={`${rowIndex}-${columnIndex}`}
+                            initialValue={initialValue}
+                            isEditable={isEditable}
+                            borderLeft={borderLeft}
+                            borderTop={borderTop}
+                            onSelectCell={() => setSelectedCell([rowIndex, columnIndex])}
+                            isSelected={isSelected}
+                        />
                     )
-                )}
+                })}
             </View>
-        )
+        ))
     }
 
-    return (
-        <View style={styles.board}>
-            {Array.from({ length: 9 }).map((_, groupIndex) => renderGroup(groupIndex))}
-        </View>
-    )
+    return <View style={styles.board}>{renderBoard()}</View>
 }
 
 const styles = StyleSheet.create({
     board: {
-        // Give the entire board a border
-        borderWidth: 3,
-        borderColor: 'black',
-    },
-    container: {
-        justifyContent: "center",
-        alignItems: "center"
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2
     },
     row: {
         flexDirection: 'row',
     },
-    group: {
-        flexDirection: 'row',
-        borderWidth: 1,
-        borderColor: 'black'
-    }
 })
 
 export default BoardComponent

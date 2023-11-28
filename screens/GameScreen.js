@@ -1,45 +1,53 @@
 import React, {useState} from "react"
-import { View, Text, StyleSheet } from "react-native"
+import {StyleSheet, SafeAreaView, Text} from "react-native"
 import BoardComponent from "../components/BoardComponent"
 import { getSudoku } from "sudoku-gen"
+import {useTranslation} from "react-i18next"
+import InputComponent from "../components/InputComponent";
 
 
 const GameScreen = ({ route }) => {
+
     const { difficulty } = route.params
-    console.log("${difficulty} chosen")
-    const sudoku = getSudoku(difficulty)
+    const [sudoku, setSudoku] = useState(() => getSudoku(difficulty));
     console.log(sudoku.puzzle)
     console.log(sudoku.solution)
     console.log(sudoku.difficulty)
 
-    const [userInput, setUserInput] = useState(sudoku.puzzle.split(""))
-    console.log(userInput)
-    const checkSolution = () => {
-        const userSolution = userInput.join("")
-        if (userSolution === sudoku.solution) {
-            alert("Correct! You solved the puzzle!")
-        } else {
-            alert("Incorrect, please try again.")
-        }
-    }
+    const { t } = useTranslation()
+    const [selectedCell, setSelectedCell] = useState(null)
 
     return (
-        <View style={styles.container}>
-            <Text>{`You selected difficulty: ${difficulty}.`}</Text>
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.subtitle}>{t("difficulty_title") + " " + sudoku.difficulty}</Text>
             <BoardComponent
                 puzzle={sudoku.puzzle}
-                userInput={userInput}
-                setUserInput={setUserInput}
+                selectedCell={selectedCell}
+                setSelectedCell={setSelectedCell}
             />
-        </View>
+
+            <InputComponent />
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: "center",
         justifyContent: "center",
-        alignItems: "center"
+        padding: 20,
+        backgroundColor: '#ddd'
+    },
+    title: {
+        fontSize: 50,
+        fontWeight: "bold",
+        marginBottom: 20
+    },
+    subtitle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 20
     }
 })
 

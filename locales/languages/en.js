@@ -12,5 +12,6 @@ export default {
     "easy": "Easy",
     "medium": "Medium",
     "hard": "Hard",
+    "difficulty_title": "Difficulty:",
     "how_to_play_title": "How to play Sudoku"
 }
