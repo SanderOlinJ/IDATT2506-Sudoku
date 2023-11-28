@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {StyleSheet, SafeAreaView, Text} from "react-native"
+import {StyleSheet, SafeAreaView, Text, View, TouchableOpacity} from "react-native"
 import BoardComponent from "../components/BoardComponent"
 import { getSudoku } from "sudoku-gen"
 import {useTranslation} from "react-i18next"
@@ -13,13 +13,11 @@ const GameScreen = ({ route }) => {
     const { t } = useTranslation()
     const [selectedCell, setSelectedCell] = useState(null)
     const [userInputs, setUserInputs] =
-        useState(sudoku.puzzle.split('').map(c => c === '-' ? '' : c))
+        useState(sudoku.puzzle.split("").map(c => c === "-" ? "" : c))
     const [flaggedCells, setFlaggedCells] = useState(Array(81).fill(false))
 
     const updateCellValue = (number) => {
-        console.log("Test 1")
         if (selectedCell) {
-            console.log("Test 2")
             const [row, col] = selectedCell
             const newUserInputs = [...userInputs]
             newUserInputs[row * 9 + col] = number.toString()
@@ -31,7 +29,7 @@ const GameScreen = ({ route }) => {
         if (selectedCell) {
             const [row, col] = selectedCell
             const newUserInputs = [...userInputs]
-            newUserInputs[row * 9 + col] = ''
+            newUserInputs[row * 9 + col] = ""
             setUserInputs(newUserInputs)
         }
     }
@@ -45,9 +43,28 @@ const GameScreen = ({ route }) => {
         }
     }
 
+    const resetGame = () => {
+        setUserInputs(sudoku.puzzle.split("").map(c => c === "-" ? "" : c))
+        setFlaggedCells(Array(81).fill(false))
+    }
+
+    const checkSolution = () => {
+        console.log("Check solution functionality to be implemented")
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
+
+            <View style={styles.topButtons}>
+                <TouchableOpacity style={styles.button} onPress={resetGame}>
+                    <Text style={styles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={checkSolution}>
+                    <Text style={styles.buttonText}>Check</Text>
+                </TouchableOpacity>
+            </View>
+
             <Text style={styles.subtitle}>{t("difficulty_title") + " " + sudoku.difficulty}</Text>
             <BoardComponent
                 puzzle={sudoku.puzzle}
@@ -62,6 +79,7 @@ const GameScreen = ({ route }) => {
                 onRemovePress={removeCellValue}
                 onFlagPress={flagCell}
             />
+
         </SafeAreaView>
     )
 }
@@ -72,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
-        backgroundColor: '#ddd'
+        backgroundColor: "#ddd"
     },
     title: {
         fontSize: 50,
@@ -83,6 +101,25 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 20
+    },
+    topButtons: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+        marginBottom: 20,
+    },
+    button: {
+        backgroundColor: "#512897",
+        width: 70,
+        padding: 5,
+        borderRadius: 5,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    buttonText: {
+        color: "white",
+        fontSize: 17,
+        fontWeight: "500"
     }
 })
 

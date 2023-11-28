@@ -42,20 +42,20 @@ const InputComponent = ({ onNumberPress, onRemovePress, onFlagPress }) => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center"
     },
     numberRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        width: '100%',
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        width: "100%",
         margin: 20
     },
     iconRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        width: '30%', // Adjust as needed
-        marginTop: 10,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        width: "30%",
+        marginTop: 10
     },
     numberButton: {
         backgroundColor: '#e7e7e7',
@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     numberButtonText: {
-        color: '#000',
+        color: "#000",
         fontSize: 24,
-        fontWeight: 'bold',
+        fontWeight: "bold"
     }
 })
 
