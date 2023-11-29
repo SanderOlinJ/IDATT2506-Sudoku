@@ -47,11 +47,6 @@ const styles = StyleSheet.create({
     scrollView: {
         padding: 10
     },
-    howToWin: {
-        fontSize: 18,
-        textAlign: "center",
-        paddingHorizontal: 10
-    },
     title: {
         fontSize: 22,
         fontWeight: "bold",

@@ -33,21 +33,6 @@ const styles = StyleSheet.create({
         width: "100%",
         margin: 20
     },
-    numberRow: {
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        width: "100%",
-        margin: 20
-    },
-    iconRow: {
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        width: "100%",
-        marginTop: 10
-    },
-    icon: {
-        paddingHorizontal: 50
-    },
     numberButton: {
         backgroundColor: "#e7e7e7",
         padding: 9,

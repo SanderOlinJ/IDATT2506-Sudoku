@@ -141,12 +141,6 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         backgroundColor: "#ddd"
     },
-    title: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginTop: 10,
-        marginBottom: 20
-    },
     topButtons: {
         flexDirection: "row",
         justifyContent: "space-between",
