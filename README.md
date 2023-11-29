@@ -37,3 +37,9 @@ After installing the dependencies, you can start the app using Expo.
 ```npx expo start```
 
 The terminal will then tell you how to open the app on your device.
+To open the application, make sure to have your Android Emulator up and running.
+
+## More
+
+This app was developed with an Android Emulator in Android Studio. The device used was
+a Pixel 2, running with the system image "Q" (API Level 29).
