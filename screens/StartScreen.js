@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import {getSudoku} from "sudoku-gen"
 
 const StartScreen = ({ navigation }) => {
+
     const { t, i18n } = useTranslation()
     const [languageModalVisible, setLanguageModalVisible] = useState(false)
     const [difficultyModalVisible, setDifficultyModalVisible] = useState(false)
@@ -43,7 +44,7 @@ const StartScreen = ({ navigation }) => {
       <SafeAreaView style={styles.container}>
 
           <Text style={styles.title}>{t("sudoku")}</Text>
-          <Image source={require("../assets/sudoku.png")} style={styles.sudokuIcon}/>
+          <Image source={require("../assets/images/sudoku.png")} style={styles.sudokuIcon}/>
           
           <TouchableOpacity
               style={styles.button}
