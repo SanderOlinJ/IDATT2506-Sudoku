@@ -1,9 +1,9 @@
-import {Modal, Text, TouchableOpacity, View, StyleSheet } from "react-native"
 import React from "react"
+import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import {useTranslation} from "react-i18next"
 
-const ChooseLanguageModal = ({ modalVisible, setModalVisible, toggleLanguage }) => {
-    const { t} = useTranslation()
+const ChooseDifficultyModal = ({ modalVisible, setModalVisible, onSelectDifficulty }) => {
+    const { t } = useTranslation()
 
     return (
         <Modal
@@ -13,18 +13,24 @@ const ChooseLanguageModal = ({ modalVisible, setModalVisible, toggleLanguage }) 
             onRequestClose={() => setModalVisible(false)}>
             <View style={styles.container}>
                 <View style={styles.modal}>
-                    <Text style={styles.title}>{t("choose_language")}</Text>
+                    <Text style={styles.title}>{t("choose_difficulty")}</Text>
 
                     <TouchableOpacity
                         style={styles.radioBtn}
-                        onPress={() => toggleLanguage("en")}>
-                        <Text style={styles.radioText}>{t("english")}</Text>
+                        onPress={() => onSelectDifficulty("easy")}>
+                        <Text style={styles.radioText}>{t("easy")}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={styles.radioBtn}
-                        onPress={() => toggleLanguage("no")}>
-                        <Text style={styles.radioText}>{t("norwegian")}</Text>
+                        onPress={() => onSelectDifficulty("medium")}>
+                        <Text style={styles.radioText}>{t("medium")}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.radioBtn}
+                        onPress={() => onSelectDifficulty("hard")}>
+                        <Text style={styles.radioText}>{t("hard")}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
     },
     radioBtn: {
         marginBottom: 15,
-        alignItems: "center"
+        alignItems: "center",
     },
     radioText: {
         fontSize: 18
@@ -89,4 +95,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ChooseLanguageModal
+export default ChooseDifficultyModal

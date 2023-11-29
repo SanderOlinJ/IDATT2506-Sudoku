@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from "react"
 import {StyleSheet, SafeAreaView, Text, TouchableOpacity, Alert} from "react-native"
 import BoardComponent from "../components/BoardComponent"
-import { getSudoku } from "sudoku-gen"
 import {useTranslation} from "react-i18next"
 import InputComponent from "../components/InputComponent"
 import Icon from "react-native-vector-icons/FontAwesome"
 
-
 const GameScreen = ({ route, navigation }) => {
 
-    const { difficulty } = route.params
-    const [sudoku, setSudoku] = useState(() => getSudoku(difficulty))
+    const { sudoku } = route.params
     const { t } = useTranslation()
     const [selectedCell, setSelectedCell] = useState(null)
     const [userInputs, setUserInputs] =
         useState(sudoku.puzzle.split("").map(c => c === "-" ? "" : c))
     const [flaggedCells, setFlaggedCells] = useState(Array(81).fill(false))
+
 
     const updateCellValue = (number) => {
         if (selectedCell) {
@@ -82,9 +80,9 @@ const GameScreen = ({ route, navigation }) => {
 
     useEffect(() => {
         navigation.setOptions({
-            title: `${t("difficulty_title")} ${t(difficulty)}`
-        });
-    }, [difficulty, navigation]);
+            title: `${t("difficulty_title")} ${t(sudoku.difficulty)}`
+        })
+    }, [sudoku, navigation])
 
     return (
         <SafeAreaView style={styles.container}>

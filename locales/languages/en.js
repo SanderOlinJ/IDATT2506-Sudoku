@@ -1,7 +1,7 @@
 export default {
     "sudoku": "Sudoku",
-    "start_new_game": "Start new game",
-    "create_new_board": "Create new board",
+    "start_game": "Start game",
+    "create_new_boards": "Create new boards",
     "settings": "Settings",
     "how_to_play": "How to play",
     "choose_language": "Choose language",
@@ -35,5 +35,12 @@ export default {
     "incorrect_title": "INCORRECT!",
     "incorrect": "Incorrect, please try again.",
     "ok": "Ok",
-    "try_again": "Try again"
+    "try_again": "Try again",
+    "what_is_sudoku": "What is Sudoku?",
+    "guide": "Guide",
+    "start_game_text": "To start a game, click the 'Start game' button. You will then get to choose at what " +
+        "difficulty you want to play.",
+    "generate_board_text": "To generate new Sudoku boards, click the 'Create new boards' button. " +
+        "Here you can switch out Sudoku boards with new ones.",
+    "settings_text": "To change the language of the app, click the 'Settings' button."
 }

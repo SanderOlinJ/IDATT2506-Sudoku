@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     row: {
-        flexDirection: "row",
+        flexDirection: "row"
     },
 })
 

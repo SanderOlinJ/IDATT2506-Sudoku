@@ -1,13 +1,23 @@
 import React from "react"
 import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native"
 import { useTranslation } from "react-i18next"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const ChooseDifficultyScreen = ({ navigation }) => {
     const { t} = useTranslation()
 
-    const selectDifficulty = (difficulty) => {
-
-        navigation.navigate("GameScreen", { difficulty: difficulty })
+    const selectDifficulty = async (difficulty) => {
+        try {
+            const jsonValue = await AsyncStorage.getItem(`@sudokuBoard_${difficulty}`)
+            if (jsonValue !== null) {
+                const sudokuData = JSON.parse(jsonValue)
+                navigation.navigate('GameScreen', { sudoku: sudokuData })
+            } else {
+                console.error("Board not found in AsyncStorage")
+            }
+        } catch (e) {
+            console.error("Error retrieving the board: ", e)
+        }
     }
 
     return (
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         paddingBottom: 100,
         padding: 20,
-        backgroundColor: '#ddd'
+        backgroundColor: "#ddd"
     },
     title: {
         fontSize: 30,
@@ -52,13 +62,13 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     button: {
-        backgroundColor: '#512897',
+        backgroundColor: "#512897",
         width: 200,
         padding: 15,
         borderRadius: 5,
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: 20,
+        marginBottom: 20
     },
     buttonText: {
         color: "white",

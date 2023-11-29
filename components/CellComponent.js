@@ -22,8 +22,7 @@ const Cell = ({ initialValue, isEditable, borderLeft, borderTop, isSelected, onS
         <TouchableOpacity
             style={cellStyle}
             disabled={!isEditable}
-            onPress={isEditable ? onSelectCell : null}
-        >
+            onPress={isEditable ? onSelectCell : null}>
             <Text style={textStyle}>
                 {initialValue}
             </Text>
@@ -48,10 +47,10 @@ const styles = StyleSheet.create({
         color: "#000"
     },
     borderLeft: {
-        borderLeftWidth: 2,
+        borderLeftWidth: 2
     },
     borderTop: {
-        borderTopWidth: 2,
+        borderTopWidth: 2
     },
     selectedCell: {
         backgroundColor: "#512897"

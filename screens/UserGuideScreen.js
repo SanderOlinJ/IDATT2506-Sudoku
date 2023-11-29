@@ -11,21 +11,27 @@ const UserGuideScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                <Text style={styles.description}>{t("sudoku_description")}</Text>
+                <Text style={styles.title}>{t("what_is_sudoku")}</Text>
 
-                <Text style={styles.controlsTitle}>{t("game_interaction_title")}</Text>
+                <Text style={styles.text}>{t("sudoku_description")}</Text>
 
-                <Text style={styles.control}>{t("select_cell_instruction")}</Text>
-                <Text style={styles.control}>
+                <Text style={styles.title}>{t("guide")}</Text>
+                <Text style={styles.text}>{t("start_game_text")}</Text>
+                <Text style={styles.text}>{t("generate_board_text")}</Text>
+                <Text style={styles.text}>{t("settings_text")}</Text>
+
+                <Text style={styles.title}>{t("game_interaction_title")}</Text>
+                <Text style={styles.text}>{t("select_cell_instruction")}</Text>
+                <Text style={styles.text}>
                     <Icon name="trash" size={18} color="#000" />
                     {t("remove_button_explanation")}</Text>
-                <Text style={styles.control}>
+                <Text style={styles.text}>
                     <Icon name="flag" size={18} color="#000" />
                     {t("flag_button_explanation")}</Text>
-                <Text style={styles.control}>{t("reset_button_explanation")}</Text>
-                <Text style={styles.control}>{t("solve_cell_button_explanation")}</Text>
-                <Text style={styles.control}>{t("quick_solve_button_explanation")}</Text>
-                <Text style={styles.control}>{t("check_button_explanation")}</Text>
+                <Text style={styles.text}>{t("reset_button_explanation")}</Text>
+                <Text style={styles.text}>{t("solve_cell_button_explanation")}</Text>
+                <Text style={styles.text}>{t("quick_solve_button_explanation")}</Text>
+                <Text style={styles.text}>{t("check_button_explanation")}</Text>
                 <View style={styles.spacer} />
             </ScrollView>
         </SafeAreaView>
@@ -41,32 +47,22 @@ const styles = StyleSheet.create({
     scrollView: {
         padding: 10
     },
-    subtitle: {
-        fontSize: 35,
-        textAlign: "center",
-        marginBottom: 30
-    },
-    description: {
-        fontSize: 17,
-        marginBottom: 15,
-        paddingHorizontal: 10
-    },
     howToWin: {
         fontSize: 18,
         textAlign: "center",
         paddingHorizontal: 10
     },
-    controlsTitle: {
+    title: {
         fontSize: 22,
         fontWeight: "bold",
         textAlign: "center",
         marginTop: 20,
-        marginBottom: 15,
+        marginBottom: 15
     },
-    control: {
+    text: {
         fontSize: 18,
         marginBottom: 10,
-        paddingHorizontal: 10,
+        paddingHorizontal: 10
     },
     spacer: {
         height: 50

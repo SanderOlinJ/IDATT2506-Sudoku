@@ -3,25 +3,36 @@ import {Text, StyleSheet, Image, SafeAreaView, TouchableOpacity} from "react-nat
 import "../locales/i18n"
 import { useTranslation } from "react-i18next"
 import ChooseLanguageModal from "../components/ChooseLanguageModal"
+import ChooseDifficultyModal from "../components/ChooseDifficultyModal"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import {getSudoku} from "sudoku-gen"
 
 const StartScreen = ({ navigation }) => {
     const { t, i18n } = useTranslation()
-    const [modalVisible, setModalVisible] = useState(false)
+    const [languageModalVisible, setLanguageModalVisible] = useState(false)
+    const [difficultyModalVisible, setDifficultyModalVisible] = useState(false)
 
     const toggleLanguage = (lang) => {
-        i18n.changeLanguage(lang).then(() => setModalVisible(false))
+        i18n.changeLanguage(lang).then(() => setLanguageModalVisible(false))
     }
 
     const startNewGame = () => {
         navigation.navigate("ChooseDifficulty")
     }
 
-    const createNewBoard = () => {
-        navigation.navigate("CreateNewBoard")
+    const createNewBoard = async (difficulty) => {
+        const newSudoku = getSudoku(difficulty)
+        const jsonValue = JSON.stringify(newSudoku)
+        await AsyncStorage.setItem(`@sudokuBoard_${difficulty}`, jsonValue)
+            .then(() => setDifficultyModalVisible(false))
+    }
+
+    const handleCreateNewBoards = () => {
+        setDifficultyModalVisible(true)
     }
 
     const openSettings = () => {
-        setModalVisible(true)
+        setLanguageModalVisible(true)
     }
 
     const openUserGuide = () => {
@@ -39,18 +50,26 @@ const StartScreen = ({ navigation }) => {
               onPress={() => startNewGame()}>
             <Text
                 style={styles.buttonText}>
-                {t("start_new_game")}
+                {t("start_game")}
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
               style={styles.button}
-              onPress={() => createNewBoard()}>
+              onPress={handleCreateNewBoards}>
             <Text
                 style={styles.buttonText}>
-                {t("create_new_board")}
+                {t("create_new_boards")}
             </Text>
           </TouchableOpacity>
+
+          <ChooseDifficultyModal
+              modalVisible={difficultyModalVisible}
+              setModalVisible={setDifficultyModalVisible}
+              onSelectDifficulty={(difficulty) => {
+                  createNewBoard(difficulty)
+              }}
+          />
 
           <TouchableOpacity
               style={styles.button}
@@ -72,8 +91,8 @@ const StartScreen = ({ navigation }) => {
 
 
           <ChooseLanguageModal
-              modalVisible={modalVisible}
-              setModalVisible={() => setModalVisible(false)}
+              modalVisible={languageModalVisible}
+              setModalVisible={() => setLanguageModalVisible(false)}
               toggleLanguage={toggleLanguage}
           />
       </SafeAreaView>
@@ -105,7 +124,7 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       alignItems: "center",
       justifyContent: "center",
-      marginBottom: 20,
+      marginBottom: 20
     },
     buttonText: {
       color: "white",

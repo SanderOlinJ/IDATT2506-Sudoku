@@ -1,7 +1,7 @@
 export default {
     "sudoku": "Sudoku",
-    "start_new_game": "Start nytt spill",
-    "create_new_board": "Lag eget brett",
+    "start_game": "Start spill",
+    "create_new_boards": "Lag nye brett",
     "settings": "Innstillinger",
     "how_to_play": "Bruksanvisning",
     "choose_language": "Velg språk",
@@ -35,5 +35,12 @@ export default {
     "incorrect_title": "FEIL!",
     "incorrect": "Feil, prøv igjen.",
     "ok": "Ok",
-    "try_again": "Prøv igjen"
+    "try_again": "Prøv igjen",
+    "what_is_sudoku": "Hva er Sudoku?",
+    "guide": "Guide",
+    "start_game_text": "For å starte et spill, klikk på 'Start spill'-knappen. Du vil da få velge hvilken " +
+        "vanskelighetsgrad du ønsker å spille på.",
+    "generate_board_text": "For å generere nye Sudoku-brett, klikk på 'Lag nye brett'-knappen. " +
+        "Her kan du bytte ut Sudoku-brett med nye.",
+    "settings_text": "For å endre språket i appen, klikk på 'Innstillinger'-knappen."
 }

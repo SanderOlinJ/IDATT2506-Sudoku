@@ -10,8 +10,7 @@ const InputComponent = ({ onNumberPress }) => {
                 <TouchableOpacity
                     key={i}
                     style={styles.numberButton}
-                    onPress={() => onNumberPress(i)}
-                >
+                    onPress={() => onNumberPress(i)}>
                     <Text style={styles.numberButtonText}>{i}</Text>
                 </TouchableOpacity>
             )
@@ -62,6 +61,5 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     }
 })
-
 
 export default InputComponent
