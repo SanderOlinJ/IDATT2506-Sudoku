@@ -41,6 +41,12 @@ const ChooseDifficultyScreen = ({ navigation }) => {
                 onPress={() => selectDifficulty("hard")}>
                 <Text style={styles.buttonText}>{t("hard")}</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => selectDifficulty("expert")}>
+                <Text style={styles.buttonText}>{t("expert")}</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }

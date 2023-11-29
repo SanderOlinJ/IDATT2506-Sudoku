@@ -34,6 +34,13 @@ const ChooseDifficultyModal = ({ modalVisible, setModalVisible, onSelectDifficul
                     </TouchableOpacity>
 
                     <TouchableOpacity
+                        style={styles.radioBtn}
+                        onPress={() => onSelectDifficulty("expert")}>
+                        <Text style={styles.radioText}>{t("expert")}</Text>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity
                         style={styles.button}
                         onPress={() => setModalVisible(!modalVisible)}>
                         <Text style={styles.textStyle}>{t("close")}</Text>

@@ -12,6 +12,7 @@ export default {
     "easy": "Lett",
     "medium": "Middels",
     "hard": "Vanskelig",
+    "expert": "Ekspert",
     "difficulty_title": "Vanskelighetsgrad:",
     "how_to_play_title": "Hvordan spille:",
     "sudoku_description": "Sudoku er et puslespill som tradisjonelt spilles på et 9x9 rutenett. " +

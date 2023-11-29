@@ -12,6 +12,7 @@ export default {
     "easy": "Easy",
     "medium": "Medium",
     "hard": "Hard",
+    "expert": "Expert",
     "difficulty_title": "Difficulty:",
     "how_to_play_title": "How to play:",
     "sudoku_description": "Sudoku is a puzzle, traditionally played on a 9x9 grid. " +
